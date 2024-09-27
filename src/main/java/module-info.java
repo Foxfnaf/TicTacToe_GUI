@@ -1,4 +1,4 @@
-module edu.foxyfnaf.tictactoe_gui2 {
+module edu.foxyfnaf.tictactoe_gui {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -12,6 +12,8 @@ module edu.foxyfnaf.tictactoe_gui2 {
     requires com.almasb.fxgl.all;
     requires java.logging;
 
-    opens edu.foxyfnaf.tictactoe_gui2 to javafx.fxml;
-    exports edu.foxyfnaf.tictactoe_gui2;
+    opens edu.foxyfnaf.tictactoe_gui to javafx.fxml;
+    exports edu.foxyfnaf.tictactoe_gui;
+    opens edu.foxyfnaf to javafx.fxml;
+    exports edu.foxyfnaf;
 }

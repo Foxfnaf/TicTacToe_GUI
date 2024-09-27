@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.foxyfnaf</groupId>
-    <artifactId>TicTacToe_GUI2</artifactId>
+    <artifactId>TicTacToe_GUI</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>TicTacToe_GUI2</name>
+    <name>TicTacToe_GUI</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -133,7 +133,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>edu.foxyfnaf.tictactoe_gui2/edu.foxyfnaf.tictactoe_gui2.HelloApplication
+                            <mainClass>edu.foxyfnaf.tictactoe_gui2/edu.foxyfnaf.tictactoe_gui.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
