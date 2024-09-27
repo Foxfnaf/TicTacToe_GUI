@@ -10,6 +10,7 @@ module edu.foxyfnaf.tictactoe_gui2 {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.logging;
 
     opens edu.foxyfnaf.tictactoe_gui2 to javafx.fxml;
     exports edu.foxyfnaf.tictactoe_gui2;
