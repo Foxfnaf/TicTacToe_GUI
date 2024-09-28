@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="edu.foxyfnaf.tictactoe_gui.GUIController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.foxyfnaf.tictactoe_gui.HelloController">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+   <left>
+      <Button mnemonicParsing="false" onAction="#onHelloButtonClick" prefHeight="59.0" prefWidth="52.0" text="Pass" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+   </left>
+   <right>
+    <Button mnemonicParsing="false" onAction="#onHelloButtonClick" prefHeight="58.0" prefWidth="82.0" text="New Game" BorderPane.alignment="CENTER">
+        <font>
+            <Font name="System Bold Italic" size="12.0" />
+        </font>
+      </Button>
+   </right>
+   <center>
+      <Label prefHeight="305.0" prefWidth="514.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

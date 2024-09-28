@@ -1,5 +1,8 @@
 package edu.foxyfnaf;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,25 +24,25 @@ public class TicTacToe {
 
     int aiAnswear = -1;
 
+    private Label boardLabel;
 
-    protected void displayGameBoard() {
+    public void displayGameBoard() {
         for (int i = 0; i < board.size(); i++) {
             if (i == 3 || i == 6 || i == 9) {
                 System.out.println();
             }
             if (board.get(i) == "empty board piece") {
-                System.out.print(numberOfBoardPiece.get(i));
+                System.out.println(numberOfBoardPiece.get(i).toString());
                 System.out.println("[ ] ");
             } else {
-                System.out.print(numberOfBoardPiece.get(i));
-                System.out.print("[" + board.get(i) + "] ");
+                System.out.println(numberOfBoardPiece.get(i).toString());
+                System.out.println("[" + board.get(i) + "] ");
             }
         }
-        addBoardToList();
         System.out.println();
     }
 
-    protected List<String> addBoardToList() {
+    public List<String> addBoardToList() {
         for (int i = 1; i <= 9; i++) {
             board.add("empty board piece");
             numberOfBoardPiece.add(i);
@@ -47,7 +50,7 @@ public class TicTacToe {
         return board;
     }
 
-    protected void addCross() {
+    public void addCross() {
         System.out.println("wybierz gdzie chcesz postawić krzyżyk");
         int boardPice = scanner.nextInt();
         boardPice--;
@@ -61,7 +64,7 @@ public class TicTacToe {
         gameStatus = checkGameStatus();
     }
 
-    protected void aiPlayer() {
+    public void aiPlayer() {
         boolean isFieldEmpty = true;
 
         while (isFieldEmpty) {
@@ -77,11 +80,11 @@ public class TicTacToe {
         gameStatus = checkGameStatus();
     }
 
-    protected boolean isFieldOccupated(int fieldNumber) {
+    public boolean isFieldOccupated(int fieldNumber) {
         return ((board.get(aiAnswear).equals("o") || board.get(aiAnswear).equals("x")));
     }
 
-    protected boolean checkGameStatus() {
+    public boolean checkGameStatus() {
         int count = 0;
         if (board.get(0).equals("x") && board.get(1).equals("x") && board.get(2).equals("x")) {
             System.out.println("Wygrałeś");

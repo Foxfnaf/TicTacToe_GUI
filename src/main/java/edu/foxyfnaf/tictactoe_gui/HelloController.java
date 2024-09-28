@@ -3,7 +3,7 @@ package edu.foxyfnaf.tictactoe_gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class GUIController {
+public class HelloController {
     @FXML
     private Label welcomeText;
 
