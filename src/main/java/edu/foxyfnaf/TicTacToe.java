@@ -1,152 +1,55 @@
 package edu.foxyfnaf;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.logging.Logger;
-
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 
 public class TicTacToe {
 
+    public Button[][] buttons = new Button[3][3];
+    public boolean isXturn = true;
 
-    protected final Logger log = Logger.getLogger(getClass().getName());
+    public void handleButtonClick(int row, int col) {
+        if (!buttons[row][col].getText().equals("")) {
+            return; // Button already clicked
+        }
 
-    ArrayList<String> board = new ArrayList<String>();
+        if (isXturn) {
+            buttons[row][col].setText("X");
+        } else {
+            buttons[row][col].setText("O");
+        }
+        isXturn = !isXturn;
 
-    Scanner scanner = new Scanner(System.in);
+        checkWin();
+    }
 
-    List<Integer> numberOfBoardPiece = new ArrayList<>();
-
-    boolean gameStatus = false;
-
-    int aiAnswear = -1;
-
-    private Label boardLabel;
-
-    public void displayGameBoard() {
-        for (int i = 0; i < board.size(); i++) {
-            if (i == 3 || i == 6 || i == 9) {
-                System.out.println();
-            }
-            if (board.get(i) == "empty board piece") {
-                System.out.println(numberOfBoardPiece.get(i).toString());
-                System.out.println("[ ] ");
-            } else {
-                System.out.println(numberOfBoardPiece.get(i).toString());
-                System.out.println("[" + board.get(i) + "] ");
+    private void checkWin() {
+        // Check rows, columns and diagonals for a win
+        for (int i = 0; i < 3; i++) {
+            if (checkCombination(buttons[i][0], buttons[i][1], buttons[i][2]) || checkCombination(buttons[0][i], buttons[1][i], buttons[2][i])) {
+                showWinMessage();
+                return;
             }
         }
-        System.out.println();
+        if (checkCombination(buttons[0][0], buttons[1][1], buttons[2][2]) || checkCombination(buttons[0][2], buttons[1][1], buttons[2][0])) {
+            showWinMessage();
+        }
     }
 
-    public List<String> addBoardToList() {
-        for (int i = 1; i <= 9; i++) {
-            board.add("empty board piece");
-            numberOfBoardPiece.add(i);
-        }
-        return board;
+    private boolean checkCombination(Button b1, Button b2, Button b3) {
+        return !b1.getText().equals("") && b1.getText().equals(b2.getText()) && b2.getText().equals(b3.getText());
     }
 
-    public void addCross() {
-        System.out.println("wybierz gdzie chcesz postawić krzyżyk");
-        int boardPice = scanner.nextInt();
-        boardPice--;
-        while (board.get(boardPice) == "o" || board.get(boardPice) == "x") {
-            System.out.println("Nie możesz postawić w tym miejscu");
-            System.out.println("wybierz gdzie chcesz postawić krzyżyk");
-            boardPice = scanner.nextInt();
-            boardPice--;
-        }
-        board.set(boardPice, "x");
-        gameStatus = checkGameStatus();
-    }
+    private void showWinMessage() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Koniec Gry");
+        alert.setHeaderText(null);
+        alert.setContentText("We have a winner!");
 
-    public void aiPlayer() {
-        boolean isFieldEmpty = true;
+        alert.showAndWait();
 
-        while (isFieldEmpty) {
-            aiAnswear = (int) (Math.random() * 9);
-            while (isFieldOccupated(aiAnswear)) {
-                aiAnswear = (int) (Math.random() * 9);
-            }
-            isFieldEmpty = false;
-            System.out.println("Ruch ai");
-            board.set(aiAnswear, "o");
-
-        }
-        gameStatus = checkGameStatus();
-    }
-
-    public boolean isFieldOccupated(int fieldNumber) {
-        return ((board.get(aiAnswear).equals("o") || board.get(aiAnswear).equals("x")));
-    }
-
-    public boolean checkGameStatus() {
-        int count = 0;
-        if (board.get(0).equals("x") && board.get(1).equals("x") && board.get(2).equals("x")) {
-            System.out.println("Wygrałeś");
-            return true;
-        }
-
-        if (board.get(3).equals("x") && board.get(4).equals("x") && board.get(5).equals("x")) {
-            System.out.println("Wygrałeś");
-            return true;
-        }
-
-        if (board.get(6).equals("x") && board.get(7).equals("x") && board.get(8).equals("x")) {
-            System.out.println("Wygrałeś");
-            return true;
-        }
-
-        if (board.get(0).equals("x") && board.get(3).equals("x") && board.get(6).equals("x")) {
-            System.out.println("Wygrałeś");
-            return true;
-        }
-
-        if (board.get(1).equals("x") && board.get(4).equals("x") && board.get(7).equals("x")) {
-            System.out.println("Wygrałeś");
-            return true;
-        }
-
-        if (board.get(2).equals("x") && board.get(5).equals("x") && board.get(8).equals("x")) {
-            System.out.println("Wygrałeś");
-            return true;
-        }
-
-        if (board.get(0).equals("x") && board.get(4).equals("x") && board.get(8).equals("x")) {
-            System.out.println("Wygrałeś");
-            return true;
-        }
-
-        if (board.get(2).equals("x") && board.get(4).equals("x") && board.get(6).equals("x")) {
-            System.out.println("Wygrał");
-            return true;
-        }
-
-        if (board.get(0).equals("o") && board.get(1).equals("o") && board.get(2).equals("o")) {
-            System.out.println("Wygrał bot");
-            return true;
-        }
-
-        if (board.get(3).equals("o") && board.get(4).equals("o") && board.get(5).equals("o")) {
-            System.out.println("Wygrał bot");
-            return true;
-        }
-
-        if (board.get(6).equals("o") && board.get(7).equals("o") && board.get(8).equals("o")) {
-            System.out.println("Wygrał bot");
-            return true;
-        }
-
-        if (board.get(0).equals("o") && board.get(3).equals("o") && board.get(6).equals("o")) {
-            System.out.println("Wygrał bot");
-            return true;
-        }
-
-        return false;
+        Platform.exit();
     }
 }
 

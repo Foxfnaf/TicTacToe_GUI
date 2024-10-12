@@ -11,6 +11,7 @@ module edu.foxyfnaf.tictactoe_gui {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.logging;
+    requires jdk.internal.le;
 
     opens edu.foxyfnaf.tictactoe_gui to javafx.fxml;
     exports edu.foxyfnaf.tictactoe_gui;
